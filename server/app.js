@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 //Configuración de la carpeta pública para servir archivos estáticos
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 //Registramos las rutas de la aplicación
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
