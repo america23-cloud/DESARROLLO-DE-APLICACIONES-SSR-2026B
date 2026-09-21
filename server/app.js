@@ -1,19 +1,24 @@
 //Función para manejar errores de la aplicación
-var createError = require('http-errors');
+//❌ var createError = require('http-errors');
+import createError from 'http-errors';
 //Importar el framework Express
-var express = require('express');
+//❌ var express = require('express');
+import express from 'express';
 //Importa módulos para manejar rutas
-var path = require('path');
+//❌ var path = require('path');
+import path from 'node:path';
 //Importar módulos para manejar cookis
-var cookieParser = require('cookie-parser');
+//❌ var cookieParser = require('cookie-parser');
+import cookieParser from 'cookie-parser';
 //Importar módulos para manejar logs
-var logger = require('morgan');
-
+//❌ var logger = require('morgan');
+import logger from 'morgan';
 //Se importan las rutas de la aplicación 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 //Se crea la aplicación Express
-var app = express();
+//❌ var app = express();
+const app = express();
 
 // Configuración de la vista del motor de plantillas
 app.set('views', path.join(__dirname, 'views'));
