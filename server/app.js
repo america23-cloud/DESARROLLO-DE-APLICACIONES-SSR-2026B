@@ -8,6 +8,8 @@ import path from 'node:path';
 import cookieParser from 'cookie-parser';
 //Importar módulos para manejar logs
 import logger from 'morgan';
+//Importando biblioteca de debug 👍
+import createDebug from 'debug';
 //Se importan las rutas de la aplicación 
 //var indexRouter = require('./routes/index');
 import indexRouter from './routes/index.js';
@@ -16,10 +18,14 @@ import usersRouter from './routes/users.js';
 //Imports para crear dirname 
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';//Creando la variable
+//Creación del objeto debug 👍
+const debug=createDebug('desarrollo-de-aplicaciones-ssr-2026b:app');
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 //Se crea la aplicación Express
+debug("🔨Creando backend");
 var app = express();
 
 // Configuración de la vista del motor de plantillas
@@ -32,8 +38,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 //Configuración de la carpeta pública para servir archivos estáticos
+debug("🔨 Creando servidor de archivos estáticos");
 app.use(express.static(path.join(__dirname, '..', 'public')));
 //Registramos las rutas de la aplicación
+debug("🛣️Registarndo rutas");
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
