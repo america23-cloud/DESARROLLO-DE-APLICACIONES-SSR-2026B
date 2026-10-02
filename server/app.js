@@ -12,9 +12,9 @@ import logger from 'morgan';
 import createDebug from 'debug';
 //Se importan las rutas de la aplicación 
 //var indexRouter = require('./routes/index');
-import indexRouter from './routes/index.js';
+import indexRouter from '#routes/index.js';
 //var usersRouter = require('./routes/users');
-import usersRouter from './routes/users.js';
+import usersRouter from '#routes/users.js';
 //Imports para crear dirname 
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';//Creando la variable
