@@ -41,7 +41,7 @@ app.use(cookieParser());
 debug("🔨 Creando servidor de archivos estáticos");
 app.use(express.static(path.join(__dirname, '..', 'public')));
 //Registramos las rutas de la aplicación
-debug("🛣️Registarndo rutas");
+debug("🛣️Registrando rutas");
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
