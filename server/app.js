@@ -20,7 +20,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';//Creando la variable
 //Creación del objeto debug 👍
 const debug=createDebug('desarrollo-de-aplicaciones-ssr-2026b:app');
-
+//Creando variables de rutas
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
