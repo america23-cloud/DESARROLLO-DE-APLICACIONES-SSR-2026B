@@ -15,9 +15,14 @@ import createDebug from 'debug';
 import indexRouter from '#routes/index.js';
 //var usersRouter = require('./routes/users');
 import usersRouter from '#routes/users.js';
+//Importando el registrador de helper
+import {registerViteHelper} from './lib/vite.js'
 //Imports para crear dirname 
 import { fileURLToPath } from 'node:url';
-import { dirname } from 'node:path';//Creando la variable
+import { dirname } from 'node:path';
+//Importando el template engine handlebars 
+import hbs from 'hbs'
+//Creando la variable
 //Creación del objeto debug 👍
 const debug=createDebug('desarrollo-de-aplicaciones-ssr-2026b:app');
 //Creando variables de rutas
@@ -31,12 +36,18 @@ var app = express();
 // Configuración de la vista del motor de plantillas
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+//Registro helper
+registerViteHelper(hbs);
 
 //Configuración de middlewares para manejar solicitudes HTTP
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+//Archivos estáticos para producción
+if(process.env.NODE_ENV == 'production') {
+  app.use(express.static(path.join(__dirname, '..', 'dist')));
+}
 //Configuración de la carpeta pública para servir archivos estáticos
 debug("🔨 Creando servidor de archivos estáticos");
 app.use(express.static(path.join(__dirname, '..', 'public')));
