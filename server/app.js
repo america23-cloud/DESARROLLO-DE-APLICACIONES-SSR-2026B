@@ -52,7 +52,7 @@ if(process.env.NODE_ENV == 'production') {
 debug("🔨 Creando servidor de archivos estáticos");
 app.use(express.static(path.join(__dirname, '..', 'public')));
 //Registramos las rutas de la aplicación
-debug("🛣️Registrando rutas");
+debug("🛣️ Registrando rutas");
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
