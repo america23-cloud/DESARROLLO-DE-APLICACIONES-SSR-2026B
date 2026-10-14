@@ -20,6 +20,9 @@ export default defineConfig([
       sourceType: "module",
       globals: {
         ... globals.node }
+   },
+   rules:{
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
    }
    },
   //2.1) Configuración de vite
