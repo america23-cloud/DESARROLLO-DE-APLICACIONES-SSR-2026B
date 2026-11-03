@@ -81,6 +81,7 @@ const options={
         timestamp({ format: 'DD-MM-YYYY HH:mm:ss' }),
         prettyPrint(),
     ),
+  },
     dailyRotateFile:{
         level:"info",
         filename: path.join(logsDir,"app-%DATE%.log"),
@@ -90,23 +91,22 @@ const options={
         maxFiles: 2,
         format: myFileFormat
     }
-  }
-};
+  };
 //Creando el logger 
 const logger= winston.createLogger({
   transports:[
     new DailyRotateFile(options.dailyRotateFile),
-    new winston.transport.File(options.readableFile),
-    new winston.transport.File(options.errorFile),
-    new winston.transport.Console(options.console),
+    new winston.transports.File(options.readableFile),
+    new winston.transports.File(options.errorFile),
+    new winston.transports.Console(options.console),
   ],
   exceptionHandlers:[
-    new winston.transport.File({
+    new winston.transports.File({
       filename: path.join(logsDir,"exceptions.log"),
     }),
   ],
   rejectionHandlers:[
-    new winston.transport.File({
+    new winston.transports.File({
       filename: path.join(logsDir,"rejections.log"),
     }),
   ],

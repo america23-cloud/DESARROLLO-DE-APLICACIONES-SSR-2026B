@@ -21,6 +21,8 @@ import { fileURLToPath } from 'node:url';
 //Importando el template engine handlebars 
 import hbs from 'hbs'
 import {registerViteHelper} from './lib/vite.js'
+//Importando la configuración de winston logger
+import logger from "./lib/winston.js"
 //Creando la variable
 //Creación del objeto debug 👍
 const debug=createDebug('desarrollo-de-aplicaciones-ssr-2026b:app');
@@ -39,7 +41,10 @@ app.set('view engine', 'hbs');
 registerViteHelper(hbs);
 
 //Configuración de middlewares para manejar solicitudes HTTP
-app.use(morgan('dev'));
+app.use(morgan('dev',{
+  stream: { 
+    write: (msg) => logger.info(msg.trim()) 
+  }}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
