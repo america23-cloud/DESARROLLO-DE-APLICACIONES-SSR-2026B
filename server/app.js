@@ -9,7 +9,7 @@ import cookieParser from 'cookie-parser';
 //Importar módulos para manejar logs
 import morgan from 'morgan';
 //Importando biblioteca de debug 👍
-import createDebug from 'debug';
+//import createDebug from 'debug';
 //Se importan las rutas de la aplicación 
 //var indexRouter = require('./routes/index');
 import indexRouter from '#routes/index.js';
@@ -25,13 +25,14 @@ import {registerViteHelper} from './lib/vite.js'
 import logger from "./lib/winston.js"
 //Creando la variable
 //Creación del objeto debug 👍
-const debug=createDebug('desarrollo-de-aplicaciones-ssr-2026b:app');
+//const debug=createDebug('desarrollo-de-aplicaciones-ssr-2026b:app');
 //Creando variables de rutas
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 //Se crea la aplicación Express
-debug("🔨Creando backend");
+//debug("🔨Creando backend");
+logger.info("🔨Creando backend");
 const app = express();
 
 // Configuración de la vista del motor de plantillas
@@ -53,10 +54,12 @@ if(process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '..', 'dist')));
 }
 //Configuración de la carpeta pública para servir archivos estáticos
-debug("🔨 Creando servidor de archivos estáticos");
+//debug("🔨 Creando servidor de archivos estáticos");
+logger.info("🔨 Creando servidor de archivos estáticos");
 app.use(express.static(path.join(__dirname, '..', 'public')));
 //Registramos las rutas de la aplicación
-debug("🛣️ Registrando rutas");
+//debug("🛣️ Registrando rutas");
+logger.info("🛣️ Registrando rutas");
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
